@@ -1,23 +1,23 @@
-library(smccar)
-library(INLA)
+library(particlefield)
+library(INLA) # for map of Germany
 library(ggplot2)
 
 # randomly reorder the states i.e. the processing order in SMC
 random_permutation <- function(nnbs, nbs, idx, y, u, Q, tau){
   jdx <- sample(idx)
-  Qj <- Q[jdx,jdx]
+  Qj <- Q[jdx, jdx]
   nnbs <- nnbs[jdx]
   y <- y[jdx]
   u <- u[jdx]
   nbs <- matrix(0, m, m)
   for(i in 1:nrow(Q)) nbs[i, 1:nnbs[i]] <- which(Qj[i, ] == -tau)
   
-  list(nnbs=nnbs, nbs=nbs,y=y,u=u,jdx=jdx)
+  list(nnbs = nnbs, nbs = nbs, y = y, u = u, jdx = jdx)
 }
 
 
 ## use the spatial structure of Germany
-graph <- system.file("demodata/germany.graph", package="INLA")
+graph <- system.file("demodata/germany.graph", package = "INLA")
 g <- inla.read.graph(graph)
 # build the graph for SMC
 nnbs <- g$nnbs
@@ -26,31 +26,42 @@ nbs <- matrix(0, m, m)
 for(i in 1:m) nbs[i, 1:nnbs[i]] <- g$nbs[[i]]
 
 
-# number of particles
+# different values for the precision
 tauseq <- c(0.1, 1)
-n_particles <- 2^c(6,8,10)
+# number of particles
+n_particles <- 2^c(6, 8, 10)
+# adaptive resampling settings
 ess <- c(1, 0.5, 0)
+# number of replications
 nsim <- 1000
 replication <- 1:nsim
 ordering <- factor(c("random", "AMD"))
 method <- factor(c("SMC-twist", "BSF"))
-results <- as.data.frame(cbind(logLik=NA, time = NA, 
-      expand.grid(method=method, ordering=ordering, ess=ess, n_particles=n_particles, replication=replication, tau=tauseq)))
-
+# create table for results
+results <- data.frame(
+  logLik = NA, 
+  time = NA, 
+  expand.grid(method = method, 
+              ordering = ordering, 
+              ess = ess, 
+              n_particles = n_particles, 
+              replication = replication, 
+              tau = tauseq))
 results <- results[!(results$method == "BSF" & results$ess == 0), ]
 nrows <- nrow(results)
 
-d <- 0.1
-idx <- 1:m
-u <- rep(10, m)
-mu <- 0
-set.seed(1)
-tau <- 0
+d <- 0.1 # ensures positive definite covariance matrix
+idx <- 1:m # each observation depends on one state
+u <- rep(10, m) # number of trials for Binomial
+mu <- 0 # intercept
+tau <- 0 #dummy for start
 
+set.seed(1)
 for (k in 1:nrows) {
   
-  if (results$tau[k] != tau) {
+  if (results$tau[k] != tau) { # new parameters
     
+    # create precision matrix
     tau <- results$tau[k]
     Q <- matrix(0, g$n, g$n)
     diag(Q) <- tau * (d + g$nnbs)
@@ -90,7 +101,6 @@ for (k in 1:nrows) {
   print(k)
 }
 
-saveRDS(results, file="tau_results.rda")
 ggplot(results, aes(x = n_particles, y = logLik, fill=interaction(ordering, ess, method))) + 
   geom_boxplot() + facet_wrap(~tau, scales = "free")
 

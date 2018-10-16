@@ -8,7 +8,7 @@ using namespace Rcpp;
 
 // R_approx_binomial_car
 Rcpp::List R_approx_binomial_car(const Eigen::Map<Eigen::VectorXi> nnbs, const Eigen::Map<Eigen::MatrixXi> nbs, const double tau, const double d, const Eigen::Map<Eigen::MatrixXd> y, const Eigen::Map<Eigen::MatrixXi> n_y, const Eigen::Map<Eigen::MatrixXd> u, const double mu, const bool use_mu, const Eigen::Map<Eigen::VectorXd> initial_mode, const unsigned int max_iter, const double conv_tol, const bool reorder, const bool ratio_correction);
-RcppExport SEXP _smccar_R_approx_binomial_car(SEXP nnbsSEXP, SEXP nbsSEXP, SEXP tauSEXP, SEXP dSEXP, SEXP ySEXP, SEXP n_ySEXP, SEXP uSEXP, SEXP muSEXP, SEXP use_muSEXP, SEXP initial_modeSEXP, SEXP max_iterSEXP, SEXP conv_tolSEXP, SEXP reorderSEXP, SEXP ratio_correctionSEXP) {
+RcppExport SEXP _particlefield_R_approx_binomial_car(SEXP nnbsSEXP, SEXP nbsSEXP, SEXP tauSEXP, SEXP dSEXP, SEXP ySEXP, SEXP n_ySEXP, SEXP uSEXP, SEXP muSEXP, SEXP use_muSEXP, SEXP initial_modeSEXP, SEXP max_iterSEXP, SEXP conv_tolSEXP, SEXP reorderSEXP, SEXP ratio_correctionSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -32,7 +32,7 @@ END_RCPP
 }
 // R_bsf_binomial_car
 Rcpp::List R_bsf_binomial_car(const Eigen::Map<Eigen::VectorXi> nnbs, const Eigen::Map<Eigen::MatrixXi> nbs, const double tau, const double d, const Eigen::Map<Eigen::MatrixXd> y, const Eigen::Map<Eigen::MatrixXi> n_y, const Eigen::Map<Eigen::MatrixXd> u, const double mu, const bool use_mu, const unsigned int n_particles, const unsigned int seed, const bool reorder, const double ess_threshold);
-RcppExport SEXP _smccar_R_bsf_binomial_car(SEXP nnbsSEXP, SEXP nbsSEXP, SEXP tauSEXP, SEXP dSEXP, SEXP ySEXP, SEXP n_ySEXP, SEXP uSEXP, SEXP muSEXP, SEXP use_muSEXP, SEXP n_particlesSEXP, SEXP seedSEXP, SEXP reorderSEXP, SEXP ess_thresholdSEXP) {
+RcppExport SEXP _particlefield_R_bsf_binomial_car(SEXP nnbsSEXP, SEXP nbsSEXP, SEXP tauSEXP, SEXP dSEXP, SEXP ySEXP, SEXP n_ySEXP, SEXP uSEXP, SEXP muSEXP, SEXP use_muSEXP, SEXP n_particlesSEXP, SEXP seedSEXP, SEXP reorderSEXP, SEXP ess_thresholdSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -55,7 +55,7 @@ END_RCPP
 }
 // R_amcmc_binomial_car
 Rcpp::List R_amcmc_binomial_car(const Eigen::Map<Eigen::VectorXi> nnbs, const Eigen::Map<Eigen::MatrixXi> nbs, const double tau, const double d, const Eigen::Map<Eigen::MatrixXd> y, const Eigen::Map<Eigen::VectorXi> n_y, const Eigen::Map<Eigen::MatrixXd> u, const double mu, const bool use_mu, const unsigned int n_iter, const unsigned int n_burnin, const Eigen::Map<Eigen::VectorXd> initial_theta, const Eigen::Map<Eigen::VectorXd> initial_mode, Eigen::Map<Eigen::MatrixXd> S, const unsigned int max_iter, const double conv_tol, const unsigned int seed, const bool ratio_correction, const bool reorder);
-RcppExport SEXP _smccar_R_amcmc_binomial_car(SEXP nnbsSEXP, SEXP nbsSEXP, SEXP tauSEXP, SEXP dSEXP, SEXP ySEXP, SEXP n_ySEXP, SEXP uSEXP, SEXP muSEXP, SEXP use_muSEXP, SEXP n_iterSEXP, SEXP n_burninSEXP, SEXP initial_thetaSEXP, SEXP initial_modeSEXP, SEXP SSEXP, SEXP max_iterSEXP, SEXP conv_tolSEXP, SEXP seedSEXP, SEXP ratio_correctionSEXP, SEXP reorderSEXP) {
+RcppExport SEXP _particlefield_R_amcmc_binomial_car(SEXP nnbsSEXP, SEXP nbsSEXP, SEXP tauSEXP, SEXP dSEXP, SEXP ySEXP, SEXP n_ySEXP, SEXP uSEXP, SEXP muSEXP, SEXP use_muSEXP, SEXP n_iterSEXP, SEXP n_burninSEXP, SEXP initial_thetaSEXP, SEXP initial_modeSEXP, SEXP SSEXP, SEXP max_iterSEXP, SEXP conv_tolSEXP, SEXP seedSEXP, SEXP ratio_correctionSEXP, SEXP reorderSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -84,7 +84,7 @@ END_RCPP
 }
 // R_mcmc_binomial_car
 Rcpp::List R_mcmc_binomial_car(const Eigen::VectorXi nnbs, const Eigen::MatrixXi nbs, const double tau, const double d, const Eigen::MatrixXd y, const Eigen::VectorXi n_y, const Eigen::MatrixXd u, const double mu, const bool use_mu, const unsigned int n_iter, const unsigned int n_burnin, const Eigen::VectorXd initial_theta, const Eigen::VectorXd initial_mode, Eigen::MatrixXd S, const unsigned int max_iter, const double conv_tol, const unsigned int seed, const unsigned int n_particles, const bool reorder, const double ess_threshold);
-RcppExport SEXP _smccar_R_mcmc_binomial_car(SEXP nnbsSEXP, SEXP nbsSEXP, SEXP tauSEXP, SEXP dSEXP, SEXP ySEXP, SEXP n_ySEXP, SEXP uSEXP, SEXP muSEXP, SEXP use_muSEXP, SEXP n_iterSEXP, SEXP n_burninSEXP, SEXP initial_thetaSEXP, SEXP initial_modeSEXP, SEXP SSEXP, SEXP max_iterSEXP, SEXP conv_tolSEXP, SEXP seedSEXP, SEXP n_particlesSEXP, SEXP reorderSEXP, SEXP ess_thresholdSEXP) {
+RcppExport SEXP _particlefield_R_mcmc_binomial_car(SEXP nnbsSEXP, SEXP nbsSEXP, SEXP tauSEXP, SEXP dSEXP, SEXP ySEXP, SEXP n_ySEXP, SEXP uSEXP, SEXP muSEXP, SEXP use_muSEXP, SEXP n_iterSEXP, SEXP n_burninSEXP, SEXP initial_thetaSEXP, SEXP initial_modeSEXP, SEXP SSEXP, SEXP max_iterSEXP, SEXP conv_tolSEXP, SEXP seedSEXP, SEXP n_particlesSEXP, SEXP reorderSEXP, SEXP ess_thresholdSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -114,7 +114,7 @@ END_RCPP
 }
 // R_print_graph
 void R_print_graph(const Eigen::Map<Eigen::VectorXi> nnbs, const Eigen::Map<Eigen::MatrixXi> nbs);
-RcppExport SEXP _smccar_R_print_graph(SEXP nnbsSEXP, SEXP nbsSEXP) {
+RcppExport SEXP _particlefield_R_print_graph(SEXP nnbsSEXP, SEXP nbsSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const Eigen::Map<Eigen::VectorXi> >::type nnbs(nnbsSEXP);
@@ -125,7 +125,7 @@ END_RCPP
 }
 // R_car_Q
 Eigen::SparseMatrix<double> R_car_Q(const Eigen::Map<Eigen::VectorXi> nnbs, const Eigen::Map<Eigen::MatrixXi> nbs, const double tau, const double d);
-RcppExport SEXP _smccar_R_car_Q(SEXP nnbsSEXP, SEXP nbsSEXP, SEXP tauSEXP, SEXP dSEXP) {
+RcppExport SEXP _particlefield_R_car_Q(SEXP nnbsSEXP, SEXP nbsSEXP, SEXP tauSEXP, SEXP dSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -139,7 +139,7 @@ END_RCPP
 }
 // R_psi_binomial_car
 Rcpp::List R_psi_binomial_car(const Eigen::Map<Eigen::VectorXi> nnbs, const Eigen::Map<Eigen::MatrixXi> nbs, const double tau, const double d, const Eigen::Map<Eigen::MatrixXd> y, const Eigen::Map<Eigen::MatrixXi> n_y, const Eigen::Map<Eigen::MatrixXd> u, const double mu, const bool use_mu, const unsigned int n_particles, const Eigen::Map<Eigen::VectorXd> initial_mode, const unsigned int max_iter, const double conv_tol, const unsigned int seed, const bool reorder, const double ess_threshold);
-RcppExport SEXP _smccar_R_psi_binomial_car(SEXP nnbsSEXP, SEXP nbsSEXP, SEXP tauSEXP, SEXP dSEXP, SEXP ySEXP, SEXP n_ySEXP, SEXP uSEXP, SEXP muSEXP, SEXP use_muSEXP, SEXP n_particlesSEXP, SEXP initial_modeSEXP, SEXP max_iterSEXP, SEXP conv_tolSEXP, SEXP seedSEXP, SEXP reorderSEXP, SEXP ess_thresholdSEXP) {
+RcppExport SEXP _particlefield_R_psi_binomial_car(SEXP nnbsSEXP, SEXP nbsSEXP, SEXP tauSEXP, SEXP dSEXP, SEXP ySEXP, SEXP n_ySEXP, SEXP uSEXP, SEXP muSEXP, SEXP use_muSEXP, SEXP n_particlesSEXP, SEXP initial_modeSEXP, SEXP max_iterSEXP, SEXP conv_tolSEXP, SEXP seedSEXP, SEXP reorderSEXP, SEXP ess_thresholdSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -165,17 +165,17 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_smccar_R_approx_binomial_car", (DL_FUNC) &_smccar_R_approx_binomial_car, 14},
-    {"_smccar_R_bsf_binomial_car", (DL_FUNC) &_smccar_R_bsf_binomial_car, 13},
-    {"_smccar_R_amcmc_binomial_car", (DL_FUNC) &_smccar_R_amcmc_binomial_car, 19},
-    {"_smccar_R_mcmc_binomial_car", (DL_FUNC) &_smccar_R_mcmc_binomial_car, 20},
-    {"_smccar_R_print_graph", (DL_FUNC) &_smccar_R_print_graph, 2},
-    {"_smccar_R_car_Q", (DL_FUNC) &_smccar_R_car_Q, 4},
-    {"_smccar_R_psi_binomial_car", (DL_FUNC) &_smccar_R_psi_binomial_car, 16},
+    {"_particlefield_R_approx_binomial_car", (DL_FUNC) &_particlefield_R_approx_binomial_car, 14},
+    {"_particlefield_R_bsf_binomial_car", (DL_FUNC) &_particlefield_R_bsf_binomial_car, 13},
+    {"_particlefield_R_amcmc_binomial_car", (DL_FUNC) &_particlefield_R_amcmc_binomial_car, 19},
+    {"_particlefield_R_mcmc_binomial_car", (DL_FUNC) &_particlefield_R_mcmc_binomial_car, 20},
+    {"_particlefield_R_print_graph", (DL_FUNC) &_particlefield_R_print_graph, 2},
+    {"_particlefield_R_car_Q", (DL_FUNC) &_particlefield_R_car_Q, 4},
+    {"_particlefield_R_psi_binomial_car", (DL_FUNC) &_particlefield_R_psi_binomial_car, 16},
     {NULL, NULL, 0}
 };
 
-RcppExport void R_init_smccar(DllInfo *dll) {
+RcppExport void R_init_particlefield(DllInfo *dll) {
     R_registerRoutines(dll, NULL, CallEntries, NULL, NULL);
     R_useDynamicSymbols(dll, FALSE);
 }

@@ -1,10 +1,12 @@
 #' Sequential Monte Carlo Methods for Markov Random Fields
 #'
-#' Work in progress...
+#' This package contains codes for running sequential Monte Carlo (SMC) for 
+#' simple latent Gaussian Markov random field (GMRF) where the observations are 
+#' Poisson or binomial. The methodology is introduced in Lindsten, Helske, Vihola (2018). 
 #'
 #' @docType package
-#' @name smccar
-#' @aliases smccar
+#' @name particlefield
+#' @aliases particlefield
 #' @importFrom Rcpp evalCpp
-#' @useDynLib smccar
+#' @useDynLib particlefield
 NULL

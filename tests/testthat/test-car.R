@@ -20,7 +20,7 @@ test_that("Building CAR model works", {
   diag(Q) <- (diag(Q) + d) * tau
   
   storage.mode(nnbs) <- storage.mode(nbs) <- "integer"
-  expect_identical(Matrix(smccar:::R_car_Q(nnbs, nbs, 1,1)), Matrix(Q))
+  expect_identical(Matrix(particlefield:::R_car_Q(nnbs, nbs, 1,1)), Matrix(Q))
   
 })
 
