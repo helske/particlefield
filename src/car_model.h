@@ -1,6 +1,6 @@
 // Besag's CAR model for latent field
 // with additional "properness" parameter d
-// (see https://www.math.ntnu.no/inla/r-inla.org/doc/latent/besagproper.pdf)
+// In INLA this is besagproper
 
 #ifndef CAR_H
 #define CAR_H

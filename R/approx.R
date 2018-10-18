@@ -1,18 +1,23 @@
-#' Gaussian approximation for Binomial model with latent ICAR field
+#' Gaussian approximation for Binomial model with latent CAR field
 #'
 #' @param nnbs Vector defining the number of neighbours for each vertex.
 #' @param nbs Matrix of indices of defining neighbours for each vertex.
-#' @param tau Precision parameter for ICAR field (full precision is tauQ).
+#' @param tau Precision parameter for CAR field.
+#' @param d Properness parameter for the CAR field.
 #' @param y Vector of observations.
-#' @param u Vector of trials Default to 1.
+#' @param u Vector of trials. Default to 1.
 #' @param idx Vector defining the dependencies between y and x.
-#' @param mu Intercept of the linear predictor. Defaults to 1.
+#' @param mu Intercept of the linear predictor. Defaults to 0.
+#' @param use_mu Use mu in the model or not. Default is \code{TRUE}.
 #' @param initial_mode Initial mode estimate of x.
 #' @param max_iter Maximum number of iterations for the approximation algorithm.
 #' @param conv_tol Tolerance parameter for the approximation algorithm.
+#' @param reorder If \code{TRUE} (default), reordering is performed for increased efficiency.
+#' @param ratio_correction Should the returned log-likelihood estimate contain the ratio correction
+#' term? Default is \code{TRUE}.
 #' @export
 approximate_binomial_car <- function(nnbs, nbs, tau, d, y, u, idx, mu = 0, 
-  use_mu=TRUE, initial_mode, max_iter = 100, conv_tol = 1e-8, reorder = TRUE,
+  use_mu = TRUE, initial_mode, max_iter = 100, conv_tol = 1e-8, reorder = TRUE,
   ratio_correction = TRUE) {
   
   y <- split(y, idx)

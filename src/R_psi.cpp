@@ -1,4 +1,5 @@
-// Gaussian approximation
+// Twisted SMC for binomial CAR using Gaussian approximation for twisting
+
 #include<random>
 
 #include "graph.h"
@@ -9,8 +10,8 @@
 
 // [[Rcpp::export]]
 Rcpp::List R_psi_binomial_car(
-    const Eigen::Map<Eigen::VectorXi> nnbs, 
-    const Eigen::Map<Eigen::MatrixXi> nbs,
+    const Eigen::Map<Eigen::VectorXi> nnbs,
+    const Eigen::Map<Eigen::MatrixXi> nbs, 
     const double tau, 
     const double d,
     const Eigen::Map<Eigen::MatrixXd> y,

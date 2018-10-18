@@ -1,6 +1,6 @@
 #ifndef RAM_H
 #define RAM_H
-
+// from ramcmc package : https://cran.r-project.org/web/packages/ramcmc/index.html
 #include <RcppEigen.h>
 // Cholesky update
 // Given the lower triangular matrix L obtained from the Cholesky decomposition of A,

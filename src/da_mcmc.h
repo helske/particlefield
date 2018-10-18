@@ -1,4 +1,6 @@
 // pseudo-marginal MCMC with delayed acceptance
+// Using the Gaussian approximation in first step
+// and twisted SMC in the second step
 
 #ifndef DAMCMC_H
 #define DAMCMC_H

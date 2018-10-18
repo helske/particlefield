@@ -6,6 +6,7 @@
 #include "approx_mcmc.h"
 #include "da_mcmc.h"
 
+// approximate MCMC, uses only the approximation, no SMC
 // [[Rcpp::export]]
 Rcpp::List R_amcmc_binomial_car(
     const Eigen::Map<Eigen::VectorXi> nnbs, 
@@ -62,6 +63,7 @@ Rcpp::List R_amcmc_binomial_car(
     Rcpp::Named("S") = S);
 }
 
+// Delayed acceptance MCMC, using the approximation in first phase
 // [[Rcpp::export]]
 Rcpp::List R_mcmc_binomial_car(
     const Eigen::VectorXi nnbs,

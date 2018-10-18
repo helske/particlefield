@@ -1,7 +1,4 @@
-// bootstrap with stratified resampling
-
-// TODO:
-// the log-likelihood is missing some (constant) terms
+// bootstrap filter with stratified resampling
 
 #ifndef BSF_H
 #define BSF_H

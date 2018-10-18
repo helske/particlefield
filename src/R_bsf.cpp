@@ -1,4 +1,4 @@
-// Gaussian approximation
+// Bootstrap particle filter
 #include<random>
 
 #include "graph.h"

@@ -2,7 +2,7 @@
 % Please edit documentation in R/approx.R
 \name{approximate_binomial_car}
 \alias{approximate_binomial_car}
-\title{Gaussian approximation for Binomial model with latent ICAR field}
+\title{Gaussian approximation for Binomial model with latent CAR field}
 \usage{
 approximate_binomial_car(nnbs, nbs, tau, d, y, u, idx, mu = 0,
   use_mu = TRUE, initial_mode, max_iter = 100, conv_tol = 1e-08,
@@ -13,22 +13,31 @@ approximate_binomial_car(nnbs, nbs, tau, d, y, u, idx, mu = 0,
 
 \item{nbs}{Matrix of indices of defining neighbours for each vertex.}
 
-\item{tau}{Precision parameter for ICAR field (full precision is tauQ).}
+\item{tau}{Precision parameter for CAR field.}
+
+\item{d}{Properness parameter for the CAR field.}
 
 \item{y}{Vector of observations.}
 
-\item{u}{Vector of trials Default to 1.}
+\item{u}{Vector of trials. Default to 1.}
 
 \item{idx}{Vector defining the dependencies between y and x.}
 
-\item{mu}{Intercept of the linear predictor. Defaults to 1.}
+\item{mu}{Intercept of the linear predictor. Defaults to 0.}
+
+\item{use_mu}{Use mu in the model or not. Default is \code{TRUE}.}
 
 \item{initial_mode}{Initial mode estimate of x.}
 
 \item{max_iter}{Maximum number of iterations for the approximation algorithm.}
 
 \item{conv_tol}{Tolerance parameter for the approximation algorithm.}
+
+\item{reorder}{If \code{TRUE} (default), reordering is performed for increased efficiency.}
+
+\item{ratio_correction}{Should the returned log-likelihood estimate contain the ratio correction
+term? Default is \code{TRUE}.}
 }
 \description{
-Gaussian approximation for Binomial model with latent ICAR field
+Gaussian approximation for Binomial model with latent CAR field
 }

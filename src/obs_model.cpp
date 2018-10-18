@@ -12,7 +12,7 @@ obs_model::obs_model(
 }
 
 // build the diagonal of the "Q_y"
-// not really Q_y because we sum elements of with same idx
+// not really Q_y because we sum elements with same idx
 Eigen::VectorXd obs_model::build_Q(
     const Eigen::Ref<const Eigen::VectorXd>& x) const {
   

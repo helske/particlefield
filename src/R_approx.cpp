@@ -1,4 +1,4 @@
-// Gaussian approximation
+// Gaussian approximation for binomial CAR
 
 #include "car_model.h"
 #include "binomial_model.h"

@@ -1,4 +1,7 @@
 // Besag's CAR model for latent field
+// with additional "properness" parameter d
+// In INLA this is besagproper
+
 #include "car_model.h"
 #include "graph.h"
 

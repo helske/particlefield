@@ -1,8 +1,5 @@
 // psi-PF with stratified resampling
 
-// TODO:
-// the log-likelihood is missing some terms
-
 #ifndef PSI_H
 #define PSI_H
 
@@ -70,7 +67,6 @@ double psi_filter(
         states.col(k) = state_tmp.col(indices(k));
       }
       weights.fill(-log(n_particles));
-      // n_resample++;
     }
     
     

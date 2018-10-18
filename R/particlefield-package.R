@@ -8,5 +8,5 @@
 #' @name particlefield
 #' @aliases particlefield
 #' @importFrom Rcpp evalCpp
-#' @useDynLib particlefield
+#' @useDynLib particlefield, .registration = TRUE
 NULL

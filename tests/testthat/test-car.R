@@ -1,7 +1,7 @@
 context("Test CAR model building")
 
 test_that("Building CAR model works", {
-  
+  require("Matrix")
   set.seed(1)
   m <- 10
   tau <- 1

@@ -2,28 +2,38 @@
 % Please edit documentation in R/mcmc.R
 \name{mcmc_binomial_car}
 \alias{mcmc_binomial_car}
-\title{MCMC for Binomial CAR model}
+\title{Markov chain Monte Carlo for Binomial CAR model}
 \usage{
 mcmc_binomial_car(nnbs, nbs, tau, d, y, u, idx, mu = 0, use_mu = TRUE,
   n_iter, n_burnin, n_particles = 0, initial_mode, max_iter = 100,
   conv_tol = 1e-08, seed = sample(.Machine$integer.max, size = 1),
-  S = NULL, ratio_correction = TRUE, delayed_acceptance = TRUE,
-  reorder = TRUE, ess_threshold = 1)
+  S = NULL, ratio_correction = TRUE, reorder = TRUE,
+  ess_threshold = 1)
 }
 \arguments{
 \item{nnbs}{Vector defining the number of neighbours for each vertex.}
 
 \item{nbs}{Matrix of indices of defining neighbours for each vertex.}
 
+\item{tau}{Precision parameter for CAR field.}
+
+\item{d}{Properness parameter for the CAR field.}
+
 \item{y}{Vector of observations.}
 
-\item{u}{Vector of exposures. Default to 1.}
+\item{u}{Vector of trials. Default to 1.}
 
 \item{idx}{Vector defining the dependencies between y and x.}
 
-\item{mu}{Intercept of the linear predictor. Defaults to 1.}
+\item{mu}{Intercept of the linear predictor. Defaults to 0.}
 
-\item{n_particles}{Number of particles for SMC.}
+\item{use_mu}{Use mu in the model or not. Default is \code{TRUE}.}
+
+\item{n_iter}{Number of iterations for the MCMC.}
+
+\item{n_burnin}{Number of iterations to discard as burn-in.}
+
+\item{n_particles}{Number of particles used in the SMC. If set to zero, approximate MCMC is used.}
 
 \item{initial_mode}{Initial mode estimate of x.}
 
@@ -31,12 +41,18 @@ mcmc_binomial_car(nnbs, nbs, tau, d, y, u, idx, mu = 0, use_mu = TRUE,
 
 \item{conv_tol}{Tolerance parameter for the approximation algorithm.}
 
-\item{phi}{Autoregressive parameter of the latent process.}
+\item{seed}{Seed for the random number generator.}
 
-\item{sigma}{Standard deviation of the AR process noise.}
+\item{S}{A lower triangular matrix defining the Cholesky decomposition of the Gaussian proposal distribution.}
 
-\item{nu}{Intercept term of the AR process (stationary mean is nu / (1 - phi)).}
+\item{ratio_correction}{Should the returned log-likelihood estimate contain the ratio correction
+term? Default is \code{TRUE}.}
+
+\item{reorder}{If \code{TRUE} (default), reordering is performed for increased efficiency.}
+
+\item{ess_threshold}{Resampling is done when the effective sample size estimator is less than this threshold times the number of particles.
+For example if \code{ess_threshold=1} resampling is done at each iteration, whereas if \code{ess_threshold=0} the algorithm reduces to simple importance sampling.}
 }
 \description{
-MCMC for Binomial CAR model
+Markov chain Monte Carlo for Binomial CAR model
 }

@@ -1,24 +1,19 @@
-#' MCMC for Binomial CAR model
+#' Markov chain Monte Carlo for Binomial CAR model
 #'
 #' @importFrom coda mcmc
-#' @param nnbs Vector defining the number of neighbours for each vertex.
-#' @param nbs Matrix of indices of defining neighbours for each vertex.
-#' @param phi Autoregressive parameter of the latent process.
-#' @param sigma Standard deviation of the AR process noise.
-#' @param nu Intercept term of the AR process (stationary mean is nu / (1 - phi)).
-#' @param y Vector of observations.
-#' @param u Vector of exposures. Default to 1.
-#' @param idx Vector defining the dependencies between y and x.
-#' @param mu Intercept of the linear predictor. Defaults to 1.
-#' @param initial_mode Initial mode estimate of x.
-#' @param max_iter Maximum number of iterations for the approximation algorithm.
-#' @param conv_tol Tolerance parameter for the approximation algorithm.
-#' @param n_particles Number of particles for SMC.
+#' @importFrom stats qlogis
+#' @import Matrix
+#' @inheritParams psi_car
+#' @inheritParams approximate_binomial_car
+#' @param n_particles Number of particles used in the SMC. If set to zero, approximate MCMC is used.
+#' @param n_iter Number of iterations for the MCMC.
+#' @param n_burnin Number of iterations to discard as burn-in.
+#' @param S A lower triangular matrix defining the Cholesky decomposition of the Gaussian proposal distribution.
 #' @export
 mcmc_binomial_car <- function(nnbs, nbs, tau, d, y, u, idx, mu = 0, use_mu=TRUE,
   n_iter, n_burnin, n_particles = 0, initial_mode, max_iter = 100, conv_tol = 1e-8, 
   seed = sample(.Machine$integer.max, size = 1), S = NULL, 
-  ratio_correction = TRUE, delayed_acceptance = TRUE, reorder = TRUE, ess_threshold=1) {
+  ratio_correction = TRUE, reorder = TRUE, ess_threshold=1) {
   
   y <- split(y, idx)
   u <- split(u, idx)

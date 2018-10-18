@@ -1,2 +1,2 @@
 library("testthat")
-test_check("SMCfields")
+test_check("particlefield")
