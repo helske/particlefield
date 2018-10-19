@@ -1,6 +1,6 @@
 Package: particlefield
 Type: Package
-Title: Sequential Monte Carlo for Latent Conditional Autoregressive Model.
+Title: Sequential Monte Carlo for Latent Conditional Autoregressive Model
 Version: 0.0.1
 Date: 2018-10-10
 Author: Jouni Helske
@@ -14,8 +14,7 @@ Suggests:
 Imports:
     coda,
     Matrix,
-    Rcpp (>= 0.12.9),
-    RcppEigen (>= 0.3.3.3.0)
+    Rcpp (>= 0.12.9)
 LinkingTo: Rcpp, RcppEigen
 SystemRequirements: C++11
 RoxygenNote: 6.1.0
