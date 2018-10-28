@@ -17,7 +17,7 @@ double psi_filter(
     Eigen::Ref<Eigen::VectorXd> weights,
     Eigen::Ref<Eigen::VectorXd> ess,
     const Eigen::Ref<const Eigen::VectorXd>& initial_mode,
-    const unsigned int max_iter = 50,
+    const unsigned int max_iter = 100,
     const double conv_tol = 1e-8,
     const double ess_threshold = 2.0) {
   
@@ -25,9 +25,8 @@ double psi_filter(
   Eigen::SparseMatrix<double> L(x_model.number_of_states, x_model.number_of_states);
   Eigen::VectorXd mode = initial_mode;
   double loglik = gaussian_approx(y_model, x_model, mode, L, max_iter, conv_tol, false);
-  
+
   const unsigned int m = x_model.number_of_states;
-  
   std::normal_distribution<> normal(0.0, 1.0);
   
   // sample x_m
@@ -36,13 +35,10 @@ double psi_filter(
     states(m - 1, k) = sample_from_normal(mode(m - 1), q_smoothedm, engine);
     // log[p(y|x)/g(y|x)]
     weights(k) = y_model.log_density(m - 1, states(m - 1, k)) -
-      y_model.approx_log_density(m - 1, mode(m - 1), states(m - 1, k));
+       y_model.approx_log_density(m - 1, mode(m - 1), states(m - 1, k));
   }
   
   std::uniform_real_distribution<> unif(0.0, 1.0);
-  
-  // Sample x_{m-1},...,x_1
-  
   
   double max_weight = weights.maxCoeff();
   Eigen::VectorXd expweights = exp(weights.array() - max_weight);
@@ -51,6 +47,8 @@ double psi_filter(
   weights = log(normalized_weights.array());
   loglik += max_weight + log(sum_weights / n_particles);
   ess(m - 1) = 1.0 / normalized_weights.array().square().sum();
+  
+  // Sample x_{m-1},...,x_1
   
   for (int j = m - 2; j >= 0; j--) {
     
@@ -69,10 +67,10 @@ double psi_filter(
       weights.fill(-log(n_particles));
     }
     
-    
     double q_smoothed = std::pow(L.coeff(j, j), 2);
     
     for (unsigned int k = 0; k < n_particles; k++) {
+      
       double mean_smoothed = mode(j) -
         L.col(j).bottomRows(m - j - 1).dot(states.col(k).bottomRows(m - j - 1) -
         mode.bottomRows(m - j - 1)) / L.coeff(j, j) ;
@@ -80,7 +78,7 @@ double psi_filter(
       states(j, k) = sample_from_normal(mean_smoothed, q_smoothed, engine);
       
       weights(k) += y_model.log_density(j, states(j, k)) -
-        y_model.approx_log_density(j, mode(j), states(j, k));
+         y_model.approx_log_density(j, mode(j), states(j, k));
     }
     
     max_weight = weights.maxCoeff();
@@ -97,4 +95,3 @@ double psi_filter(
 }
 
 #endif
-

@@ -14,7 +14,7 @@ double gaussian_approx(
     T2& x_model, // model for latent variables
     Eigen::VectorXd& x,
     Eigen::SparseMatrix<double>& L, // I don't understand why Ref does not work here...
-    const unsigned int max_iter = 50,
+    const unsigned int max_iter = 100,
     const double conv_tol = 1e-8, 
     const bool ratio_correction = true) {
   

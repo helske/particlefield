@@ -9,7 +9,6 @@ if (.Machine$sizeof.pointer == 8 && require("INLA", quietly = TRUE)) {
     m <- 10
     tau <- 1
     d <- 1
-    idx <- sample(m * (m + 1) / 2, 2 * m)
     Q <- matrix(0, m, m)
     Q[upper.tri(Q)] <- sample(0:1, size = m * (m - 1) / 2, replace = TRUE)
     Q <- Q + t(Q)
@@ -38,7 +37,7 @@ if (.Machine$sizeof.pointer == 8 && require("INLA", quietly = TRUE)) {
     
     
     inla_g <- inla.read.graph(Q)
-    fit <- inla(y ~  f(region, model = "besagproper", graph = inla_g), 
+    fit <- inla(y ~ f(region, model = "besagproper", graph = inla_g), 
                 family = "binomial", Ntrials = u, data = data.frame(y = y, region = idx), 
                 control.fixed = list(mean.intercept = mu, prec.intercept = exp(15)),
                 control.mode = list(theta = c(0,0), fixed = TRUE), control.compute = list(config = TRUE), 

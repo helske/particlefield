@@ -4,3 +4,14 @@ This `R` package contains supplementary material for paper "Sequential Monte Car
 
 The package contains functions for finding Gaussian approximation for Binomial CAR model, bootstrap particle filter and twisted SMC algorithms for latent field and likelihood estimation as well as delayed acceptance MCMC based on Gaussian approximation + SMC.
 
+### Installation
+
+You can install the package from Github as follows:
+
+``` 
+devtools::install_github("helske/particlefield")
+```
+
+### Example
+
+

@@ -59,7 +59,7 @@ double binomial_model::log_prior_pdf(
     const Eigen::Ref<const Eigen::VectorXd>& theta) const {
   // currently fixed
   double log_prior = 0.0;
-  if (use_mu) log_prior = R::dnorm(theta(0), 0, 10, 1);
+  if (use_mu) log_prior = R::dnorm(theta(0), 0, 1, 1);
   return log_prior;
 }
 

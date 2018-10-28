@@ -4,13 +4,14 @@
 #' @param nbs Matrix of indices of defining neighbours for each vertex.
 #' @param n_particles Number of particles for SMC.
 #' @param ess_threshold Resampling is done when the effective sample size estimator is less than this threshold times the number of particles.
-#' For example if \code{ess_threshold=1} resampling is done at each iteration, whereas if \code{ess_threshold=0} the algorithm reduces to simple importance sampling.
+#' For example if \code{ess_threshold=1} resampling is done at each iteration (default), whereas if \code{ess_threshold=0} the algorithm reduces to simple importance sampling.
 #' @param seed Seed for the random number generator.
 #' @export
 psi_car <- function(nnbs, nbs, tau, d, y, u, idx, mu = 0, use_mu=TRUE, n_particles,
-                    ess_threshold=NULL, reorder = TRUE, initial_mode, max_iter = 100, conv_tol = 1e-8, 
+                    ess_threshold = NULL, reorder = TRUE, initial_mode, max_iter = 100, conv_tol = 1e-8, 
                     seed = sample(.Machine$integer.max, size = 1)) {
   
+  if(n_particles < 1) stop("Argument 'n_particles' must be positive integer.")
   if (is.null(ess_threshold)) ess_threshold <- 2
   y <- split(y, idx)
   u <- split(u, idx)
@@ -35,9 +36,11 @@ psi_car <- function(nnbs, nbs, tau, d, y, u, idx, mu = 0, use_mu=TRUE, n_particl
 #' @inheritParams psi_car
 #' @export
 bsf_car <- function(nnbs, nbs, tau, d, y, u, idx, mu = 0, use_mu=TRUE, n_particles,
-                    ess_threshold = 2, reorder = TRUE,
+                    ess_threshold = NULL, reorder = TRUE,
                     seed = sample(.Machine$integer.max, size = 1)) {
   
+  if(n_particles < 1) stop("Argument 'n_particles' must be positive integer.")
+  if (is.null(ess_threshold)) ess_threshold <- 2
   y <- split(y, idx)
   u <- split(u, idx)
   n_y <- lengths(y)

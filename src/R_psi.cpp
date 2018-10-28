@@ -1,5 +1,4 @@
 // Twisted SMC for binomial CAR using Gaussian approximation for twisting
-
 #include<random>
 
 #include "graph.h"

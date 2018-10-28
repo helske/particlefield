@@ -30,7 +30,7 @@ mcmc_binomial_car <- function(nnbs, nbs, tau, d, y, u, idx, mu = 0, use_mu=TRUE,
   if (use_mu) {
     initial_theta <- c(log(tau), log(d), mu)
   } else {
-    initial_theta <- c(log(tau), d)
+    initial_theta <- c(log(tau), log(d))
   }
   
   if (is.null(S)) {
@@ -49,6 +49,7 @@ mcmc_binomial_car <- function(nnbs, nbs, tau, d, y, u, idx, mu = 0, use_mu=TRUE,
       seed, n_particles, reorder, ess_threshold)
   }
   out$theta[,1:2] <- exp(out$theta[,1:2])
+  colnames(out$theta) <- c("tau", "d", if(use_mu) "mu")
   out$theta <- mcmc(out$theta)
   out
 } 

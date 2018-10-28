@@ -18,9 +18,7 @@ double bootstrap_filter(
     const double ess_threshold = 2.0) {
   
   double loglik = 0.0;
-  
   const unsigned int m = x_model.number_of_states;
-  
   std::normal_distribution<> normal(0.0, 1.0);
   
   // prior for x
@@ -32,7 +30,8 @@ double bootstrap_filter(
   solver.factorize(Q_x_prior);
   Eigen::SparseMatrix<double> L(x_model.number_of_states, x_model.number_of_states);
   L = solver.matrixL().eval() * (solver.vectorD().cwiseSqrt().asDiagonal());
-  // sample x_1
+  
+  // sample x_m
   double q_m = std::pow(L.coeff(m - 1, m - 1), 2);
   for (unsigned int k = 0; k < n_particles; k++) {
     states(m - 1, k) = sample_from_normal(prior_mean(m - 1), q_m, engine);
@@ -41,7 +40,6 @@ double bootstrap_filter(
   }
   
   std::uniform_real_distribution<> unif(0.0, 1.0);
-  
   
   double max_weight = weights.maxCoeff();
   Eigen::VectorXd expweights = exp(weights.array() - max_weight);
@@ -97,4 +95,3 @@ double bootstrap_filter(
 }
 
 #endif
-

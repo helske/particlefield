@@ -33,14 +33,13 @@ Rcpp::List R_bsf_binomial_car(
   
   if (reorder) model_x.reorder(model_y);
   
-  
   std::mt19937 engine(seed);
   double logLik = bootstrap_filter(model_y, model_x, n_particles, engine, states, 
     weights, ess, ess_threshold);
   
   return Rcpp::List::create(
     Rcpp::Named("states") =  model_x.P.transpose() * states,
-    Rcpp::Named("weights") = weights,  // note that these in respect to processing order!
+    Rcpp::Named("weights") = weights, 
     Rcpp::Named("ess") = ess.reverse(),  // note that these in respect to processing order!
     Rcpp::Named("logLik") = logLik);
 }

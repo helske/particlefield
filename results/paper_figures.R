@@ -35,7 +35,7 @@ experiment <- function(tau, nsim, n_cores = 24) {
   graph <- system.file("demodata/germany.graph", package = "INLA")
   g <- inla.read.graph(graph)
   
-  # build the graph for smccar
+  # build the graph
   nnbs <- g$nnbs
   m <- length(nnbs)
   nbs <- matrix(0, m, m)
