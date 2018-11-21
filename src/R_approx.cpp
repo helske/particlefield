@@ -32,7 +32,7 @@ Rcpp::List R_approx_binomial_car(
   if (reorder) mode = model_x.P.transpose() * mode;
   return Rcpp::List::create(
     Rcpp::Named("mean") = mode,
-    Rcpp::Named("L") = L,
+    Rcpp::Named("L") =  model_x.P.transpose() * L,
     Rcpp::Named("logLik") = loglik);
   //Rcpp::Named("P") = model_x.P.toDenseMatrix()); 
   //note: all.equal(as.matrix(L2%*%t(L2)), as.matrix(t(P)%*%L%*%t(L)%*%P)), 

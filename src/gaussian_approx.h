@@ -7,7 +7,7 @@
 
 #include <RcppEigen.h>
 
-// returns the approximate mode and Cholesky L of Q no it doesn't, L is not correct!
+// returns the approximate mode and Cholesky L of Q
 template <class T1, class T2>
 double gaussian_approx(
     const T1& y_model, // model for observations

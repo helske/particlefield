@@ -51,7 +51,7 @@ term? Default is \code{TRUE}.}
 \item{reorder}{If \code{TRUE} (default), reordering is performed for increased efficiency.}
 
 \item{ess_threshold}{Resampling is done when the effective sample size estimator is less than this threshold times the number of particles.
-For example if \code{ess_threshold=1} resampling is done at each iteration, whereas if \code{ess_threshold=0} the algorithm reduces to simple importance sampling.}
+For example if \code{ess_threshold=1} resampling is done at each iteration (default), whereas if \code{ess_threshold=0} the algorithm reduces to simple importance sampling.}
 }
 \description{
 Markov chain Monte Carlo for Binomial CAR model
