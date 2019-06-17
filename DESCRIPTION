@@ -3,8 +3,12 @@ Type: Package
 Title: Sequential Monte Carlo for Latent Conditional Autoregressive Model
 Version: 0.0.1
 Date: 2018-10-10
-Author: Jouni Helske
-Maintainer: Jouni Helske <jouni.helske@jyu.fi>
+Authors@R: 
+    person(given = "Jouni",
+           family = "Helske",
+           role = c("aut", "cre"),
+           email = "jouni.helske@iki.fi",
+           comment = c(ORCID = "0000-0001-7130-793X"))
 Description: Functions for replicating the results of the latent Gaussian Markov 
   random field experiment of Lindsten, Helske, Vihola (2018), XX. Contains also 
   functions for performing particle Markov chain Monte Carlo estimation of the model parameters. 

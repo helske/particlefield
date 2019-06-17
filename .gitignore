@@ -7,4 +7,4 @@ src/*.so
 src/*.dll
 comparing_with_inla.R
 germanymap.R
-
+*.rds
